@@ -6,13 +6,35 @@ Class::Accessor::Fast::WithBuilder - Class::Accessor::Fast with lazy defaults
 
 =head1 VERSION
 
-0.00
+0.01
 
 =head1 DESCRIPTION
 
+This module will require builders for each attribute defined. This means
+that adding attributes with this module, is something like this code
+from L<Moose>:
+
+    has age => (
+        is => "ro", # or rw
+        lazy => 1,
+        builder => "_build_age",
+    );
+
+NOTE: All builders will be called as late as possible.
+
 =head1 SYNOPSIS
 
-See L<Class::Accessor/SYNOPSIS>.
+    package Foo;
+    use base qw(Class::Accessor::Fast::WithBuilder);
+
+    Foo->mk_accessors(qw( name age ));
+
+    sub _build_name { $_[0]->_croak("'name' attribute cannot be built!") }
+    sub _build_age { 0 }
+
+    print Foo->new->name; # BOOM!
+    print Foo->new->age; # Will print "0"
+    print Foo->new({ age => 123 })->age; # Will print "123"
 
 =cut
 
@@ -20,11 +42,13 @@ use strict;
 use warnings;
 use base 'Class::Accessor::Fast'; # overriding all ::Fast methods, but...
 
-our $VERSION = eval '0.00';
+our $VERSION = eval '0.01';
 
 =head1 METHODS
 
 =head2 make_accessor
+
+See L<Class::Accessor/make_accessor>
 
 =cut
 
@@ -39,7 +63,9 @@ sub make_accessor {
     };
 }
 
-=head2 make_accessor
+=head2 make_ro_accessor
+
+See L<Class::Accessor/make_ro_accessor>
 
 =cut
 
@@ -57,7 +83,7 @@ sub make_ro_accessor {
 
 =head2 make_wo_accessor
 
-This is not implemented.
+This is not implemented. (See L<Class::Accessor/make_wo_accessor>)
 
 =cut
 
@@ -65,6 +91,7 @@ sub make_wo_accessor {
     $_[0]->_croak('not implemented');
 }
 
+# used to check if _build_foo() methods are defined
 sub _mk_accessors {
     my $class = shift;
     my($type, @fields) = @_;
