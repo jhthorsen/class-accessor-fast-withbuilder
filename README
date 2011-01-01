@@ -1,0 +1,17 @@
+NAME
+    Class::Accessor::Fast::WithBuilder - Class::Accessor::Fast with lazy
+    defaults
+
+VERSION
+    0.00
+
+DESCRIPTION
+SYNOPSIS
+        use base qw/Class::Accessor::Fast::WithBuilder/;
+
+METHODS
+BUGS
+COPYRIGHT & LICENSE
+AUTHOR
+    Jan Henning Thorsen "jhthorsen at cpan.org"
+
