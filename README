@@ -3,7 +3,7 @@ NAME
     defaults
 
 VERSION
-    0.01
+    0.0101
 
 DESCRIPTION
     This module will require builders for each attribute defined. This means

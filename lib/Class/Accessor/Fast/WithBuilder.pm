@@ -6,7 +6,7 @@ Class::Accessor::Fast::WithBuilder - Class::Accessor::Fast with lazy defaults
 
 =head1 VERSION
 
-0.01
+0.0101
 
 =head1 DESCRIPTION
 
@@ -42,7 +42,7 @@ use strict;
 use warnings;
 use base 'Class::Accessor::Fast'; # overriding all ::Fast methods, but...
 
-our $VERSION = eval '0.01';
+our $VERSION = '0.0101';
 
 =head1 METHODS
 

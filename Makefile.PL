@@ -10,7 +10,7 @@ test_requires q(Test::More) => 0.90;
 
 bugtracker q(http://rt.cpan.org/NoAuth/Bugs.html?Dist=Class-Accessor-Fast-WithBuilder);
 homepage q(http://search.cpan.org/dist/Class-Accessor-Fast-WithBuilder);
-# repository q(origin);
+repository q(https://github.com/jhthorsen/class-accessor-fast-withbuilder.git);
 
 # install_script glob('bin/*');
 auto_install;
